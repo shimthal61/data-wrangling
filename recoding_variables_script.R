@@ -10,8 +10,8 @@ my_messy_data %>%
                             "3" = "PrimeB_TargetA",
                             "4" = "PrimeB_TargetB")) %>%
 
-#Seperating our condition columns
+#Separating our condition columns
   separate(col = "condition", into = c("Prime", "Target"), sep = "_") %>%
 
 #Mutate our condition columns into factors
-  mutate(Prime = factor(Prime), Target = factor(Target)) %>%
+  mutate(Prime = factor(Prime), Target = factor(Target))
