@@ -1,0 +1,44 @@
+library(EDAWR, dplyr)
+
+head(cases)
+
+#gather() collapses multiple columns into two columns
+#Reshapes the data
+gather(cases,
+      #Name of the new key column 
+      "year",
+      #Name of the new column 
+      "n", 
+      #Names or number indexes of columns to collapse
+      2:4)
+
+head(pollution)
+
+#spread() generates multiple columns from two columns
+#Data frame to use
+spread(pollution,
+       #Column to use for key
+       "size",
+       #Column to use for values
+       amount)
+
+head(storms)
+
+storms_2 <- storms %>%
+  separate(date, c("year", "month", "day"), sep = "-")
+
+storms_2 %>%
+  unite("date", year, month, day, sep = "-")
+
+#Extract exisitng variables
+storms %>%
+  select(-storm)
+
+#Extract existing observations
+storms %>%
+  filter(wind >= 50, 
+         storm %in% c("Alberto", "Alex", "Allison"))
+
+storms %>%
+  mutate(ratio = pressure / wind, inverse = ratio^-1,) %>%
+  mutate(ratio = round(ratio, 2), inverse = round(inverse, 2))
